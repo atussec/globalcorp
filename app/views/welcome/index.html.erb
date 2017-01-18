@@ -1,0 +1,18 @@
+<h1>Welcome to GlobalCorp</h1>
+<span class="flow-text">
+  GlobalCorp is a game set in a virtual company where fair is what makes profit.
+  More text will appear here and also a help link...
+  Until then proceed with caution!
+</span>
+<div class="row">
+  <div class="col s4">
+    <%= link_to 'Login as an existing user', new_user_session_path, class: 'waves-effect waves-light btn-large' %>
+  </div>
+  <div class="col s4">
+    <%= link_to 'Register as a new user', new_user_registration_path, class: 'waves-effect waves-light btn-large' %>
+  </div>
+  <div class="col s4">
+    <%= link_to 'Start as a guest first', anonymous_path, class: 'waves-effect waves-light btn-large' %>
+  </div>
+</div>
+
