@@ -54,8 +54,9 @@ end
 # performance tracking
 group :production do
   gem 'scout_apm'
-  gem 'rollbar'
 end
+gem 'rollbar'
+
 
 # utilities
 gem 'has_scope'

@@ -5,14 +5,19 @@
   Until then proceed with caution!
 </span>
 <div class="row">
-  <div class="col s4">
-    <%= link_to 'Login as an existing user', new_user_session_path, class: 'waves-effect waves-light btn-large' %>
-  </div>
-  <div class="col s4">
-    <%= link_to 'Register as a new user', new_user_registration_path, class: 'waves-effect waves-light btn-large' %>
-  </div>
-  <div class="col s4">
-    <%= link_to 'Start as a guest first', anonymous_path, class: 'waves-effect waves-light btn-large' %>
-  </div>
+  <% if user_signed_in? %>
+      <h5>Welcome <%= current_user.email %></h5>
+      <%= link_to 'Start the game', welcome_index_path, class: 'waves-effect waves-light btn-large' %>
+  <% else %>
+      <div class="col s4">
+        <%= link_to 'Login as an existing user', new_user_session_path, class: 'waves-effect waves-light btn-large' %>
+      </div>
+      <div class="col s4">
+        <%= link_to 'Register as a new user', new_user_registration_path, class: 'waves-effect waves-light btn-large' %>
+      </div>
+      <div class="col s4">
+        <%= link_to 'Start as a guest first', anonymous_path, class: 'waves-effect waves-light btn-large' %>
+      </div>
+  <% end %>
 </div>
 
