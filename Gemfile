@@ -56,6 +56,7 @@ group :production do
   gem 'scout_apm'
 end
 gem 'rollbar'
+gem 'airbrake'
 
 
 # utilities
