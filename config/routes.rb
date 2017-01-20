@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :players
   root 'welcome#index'
 
   get 'welcome/index'

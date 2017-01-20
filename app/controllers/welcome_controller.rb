@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  skip_before_action :ensure_player
+
   def index
   end
 
