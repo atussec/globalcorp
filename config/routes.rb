@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   get 'anonymous', to: 'welcome#anonymous'
 
-  devise_for :users
+  devise_for :user
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
