@@ -13,7 +13,7 @@ RSpec.describe WelcomeController, type: :controller do
     end
     it "populates @user" do
       get :anonymous
-      assigns(:user).should be
+      expect(assigns(:user)).to be
     end
     it "generates an email from globalcorp" do
       get :anonymous
