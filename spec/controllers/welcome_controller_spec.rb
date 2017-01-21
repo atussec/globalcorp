@@ -2,14 +2,9 @@ require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
   describe "GET #anonymous" do
-    it "responds successfully with an HTTP 200 status code" do
+    it "responds successfully with a redirect" do
       get :anonymous
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-    it "renders the anonymous template" do
-      get :anonymous
-      expect(response).to render_template("anonymous")
+      expect(response).to redirect_to welcome_index_path
     end
     it "populates @user" do
       get :anonymous
