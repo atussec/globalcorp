@@ -7,7 +7,11 @@
 <div class="row">
   <% if user_signed_in? %>
       <h5>Welcome <%= current_user.email %></h5>
-      <%= link_to 'Start the game', new_player_path, class: 'waves-effect waves-light btn-large' %>
+      <% if @player %>
+          <%= link_to 'Start the game', new_player_path, class: 'waves-effect waves-light btn-large' %>
+      <% else %>
+          <%= link_to 'Create your Player', new_player_path, class: 'waves-effect waves-light btn-large' %>
+      <% end %>
   <% else %>
       <div class="col s4">
         <%= link_to 'Login as an existing user', new_user_session_path, class: 'waves-effect waves-light btn-large' %>

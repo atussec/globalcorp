@@ -1,6 +1,9 @@
 class WelcomeController < ApplicationController
 
   def index
+    if user_signed_in?
+      @player = current_user.player
+    end
   end
 
   def anonymous
@@ -9,6 +12,7 @@ class WelcomeController < ApplicationController
     end
     @user = generate_anonymous
     sign_in(@user)
+    redirect_to welcome_index_path
   end
 
 
