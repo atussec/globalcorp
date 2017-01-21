@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Globalcorp</title>
+    <title>GlobalCorp</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,17 +15,19 @@
 
   <body>
     <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo">IdeaVote</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <% if user_signed_in? %>
-              <li><%= link_to('Account', edit_user_registration_path) %></li>
-              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
-          <% else %>
-              <li><%= link_to('Login', new_user_session_path)  %></li>
-              <li><%= link_to('Register', new_user_registration_path)  %></li>
-          <% end %>
-        </ul>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">GlobalCorp</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <% if user_signed_in? %>
+                <li><%= link_to('Account', edit_user_registration_path) %></li>
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            <% else %>
+                <li><%= link_to('Login', new_user_session_path) %></li>
+                <li><%= link_to('Register', new_user_registration_path) %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </nav>
     <p class="notice"><%= notice %></p>
