@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   before_action :ensure_player, except: [:new, :create]
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :no_duplicate_player, only: [:new, :create]
 
   # GET /players
   # GET /players.json
@@ -58,6 +59,17 @@ class PlayersController < ApplicationController
   end
 
   private
+
+    # Check if this user already has a player
+    # requires #authenticate_user! to run before it
+    # so that current_user gets populated
+    #
+    # This filter redirects to the users player if he has one
+    def no_duplicate_player
+      if current_user.player
+        redirect_to current_user.player
+      end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
