@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-
   def ensure_player
     if not user_signed_in?
       redirect_to welcome_index_path
@@ -13,5 +12,4 @@ class ApplicationController < ActionController::Base
       redirect_to new_player_path
     end
   end
-
 end

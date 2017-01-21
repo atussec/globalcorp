@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
-  before_action :ensure_player, except: :new
-  before_action :authenticate_user!, only: :new
+  before_action :ensure_player, except: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   # GET /players
   # GET /players.json
@@ -11,6 +11,9 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    @current_player = Player.find(params[:id])
+  rescue
+    redirect_to @player
   end
 
   # GET /players/new
@@ -19,6 +22,8 @@ class PlayersController < ApplicationController
   end
 
   # GET /players/1/edit
+  # This will always show your own player
+  # and #update will always update your own player
   def edit
   end
 
@@ -26,7 +31,7 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-
+    @player.user_id = current_user.id
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
@@ -57,5 +62,6 @@ class PlayersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
       params.require(:player).permit(:name)
+          #.merge(:money => 1.0)
     end
 end
