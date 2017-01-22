@@ -44,20 +44,6 @@ class PlayersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /players/1
-  # PATCH/PUT /players/1.json
-  def update
-    respond_to do |format|
-      if @player.update(player_params)
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
-        format.json { render :show, status: :ok, location: @player }
-      else
-        format.html { render :edit }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   private
 
     # Check if this user already has a player

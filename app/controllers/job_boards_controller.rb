@@ -4,16 +4,14 @@ class JobBoardsController < ApplicationController
   # GET /job_boards
   # GET /job_boards.json
   def index
-    @board = JobBoard.offset(rand(JobBoard.count-1)).first
+    @board = JobBoard.get_random
     redirect_to @board
-  rescue
-    # no boards here, we need to run a fixture...
-    # So we do nothing and render the page
   end
 
   # GET /job_boards/1
   # GET /job_boards/1.json
   def show
+
   end
 
   # GET /job_boards/new
