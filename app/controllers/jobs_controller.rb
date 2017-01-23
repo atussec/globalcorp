@@ -16,8 +16,15 @@ class JobsController < ApplicationController
   end
 
   # A player clicked start on a job
+  # The job will be removed from the board (#destroy)
+  # And a PlayerJob will be inserted for the player.
+  #
+  # There need to be some safety checks to ensure that the player has enough money etc.
+  # Also broadcast this change to the ActionCable channel
+  #
+  # Also ping the board to generate a new job if the are some missing
   def start
-
+    # todo: fill out
   end
 
   private
