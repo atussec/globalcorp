@@ -15,9 +15,9 @@ class JobBoard < ApplicationRecord
   def generate_new_job
     # stub for randomly generating new jobs
     random = Random.new
-    level = self.level + 1
-    money = random.rand(0.0..level)
-    time = random.rand(0.0..level)
+    level = self.level + 1.0
+    money = random.rand(0.01..level)
+    time = random.rand(1..level*60)
     self.jobs.create({money: money, time: time})
   end
 end

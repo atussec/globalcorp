@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :jobs
+  resources :jobs do
+    member do
+      get 'start'
+    end
+  end
   resources :job_boards
   resources :players
   root 'welcome#index'
