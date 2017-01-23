@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show]
+  before_action :set_job, only: [:show, :start]
+  before_action :ensure_player
 
   # GET /jobs
   # GET /jobs.json
@@ -24,6 +25,15 @@ class JobsController < ApplicationController
   #
   # Also ping the board to generate a new job if the are some missing
   def start
+    @board = @job.job_board
+    unless @player.can_start @job
+      # Something was not quite right...
+      # Maybe later redirect to the job overview if one exists
+      redirect_to @job.job_board
+    end
+
+
+
     # todo: fill out
   end
 

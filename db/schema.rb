@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122120126) do
+ActiveRecord::Schema.define(version: 20170123132610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170122120126) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.decimal  "money",       precision: 999, scale: 2, default: "1.0"
+    t.decimal  "money"
     t.integer  "time"
     t.integer  "job_board_id"
     t.datetime "created_at",   null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170122120126) do
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "user_id"
-    t.decimal  "money",      precision: 999, scale: 2, default: "1.0"
+    t.decimal  "money",      precision: 999, scale: 2, default: "0.0"
     t.integer  "tutorial",                             default: 0
     t.index ["name"], name: "index_players_on_name", unique: true, using: :btree
     t.index ["user_id"], name: "index_players_on_user_id", using: :btree
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20170122120126) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "works", force: :cascade do |t|
+    t.decimal  "money",       precision: 999, scale: 2
+    t.integer  "time"
+    t.integer  "player_id"
+    t.datetime "finished_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["player_id"], name: "index_works_on_player_id", using: :btree
+  end
+
   add_foreign_key "jobs", "job_boards"
   add_foreign_key "players", "users"
+  add_foreign_key "works", "players"
 end
