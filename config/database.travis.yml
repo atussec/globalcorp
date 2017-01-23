@@ -6,5 +6,5 @@ default: &default
 
 test:
   <<: *default
-  database: travis_ci_test
+  database: travis
 
