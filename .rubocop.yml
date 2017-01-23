@@ -1,6 +1,7 @@
 AllCops:
   Excludes:
     - db/**
+    - db/migrate/**
 # disable as performance is not needed and migration to ruby3 will be fine
 Style/FrozenStringLiteralComment:
   Enabled: false
