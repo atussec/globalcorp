@@ -1,0 +1,9 @@
+AllCops:
+  Excludes:
+    - db/**
+# disable as performance is not needed and migration to ruby3 will be fine
+Style/FrozenStringLiteralComment:
+  Enabled: false
+# a max of 80 is too small
+Metrics/LineLength:
+  Max: 120
