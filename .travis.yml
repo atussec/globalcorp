@@ -8,9 +8,6 @@ services:
   - redis
   - postgresql
 
-addons:
-  postgresql: "9.6"
-
 before_script:
   - cp config/database.travis.yml config/database.yml
 
