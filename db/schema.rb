@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20170123141029) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.decimal  "money"
+    t.decimal  "money",        precision: 999, scale: 2, default: "0.0"
     t.integer  "time"
     t.integer  "job_board_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "skill",        default: 0
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.integer  "skill",                                  default: 0
     t.index ["job_board_id"], name: "index_jobs_on_job_board_id", using: :btree
   end
 
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170123141029) do
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "user_id"
-    t.decimal  "money",      precision: 999, scale: 2, default: "0.0"
+    t.decimal  "money",      precision: 999, scale: 2, default: "1.0"
     t.integer  "tutorial",                             default: 0
     t.decimal  "skill",      precision: 10,  scale: 2, default: "0.0"
     t.boolean  "admin",                                default: false, null: false
