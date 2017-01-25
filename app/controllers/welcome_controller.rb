@@ -16,8 +16,7 @@ class WelcomeController < ApplicationController
   end
 
   def letsencrypt
-    # use your code here, not mine
-    render text: "ELpykcVQQ7lOwdYmDGvVc03dZOy-UFcQXfC-xTT_WsI.8A6RSmS7yzTtZr3_Z3EyCH5S1wKvbq1Y4fYh-BzXfOU"
+    render plain: "letsencrypt can be validated here :)"
   end
 
   private
