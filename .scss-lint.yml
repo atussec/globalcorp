@@ -128,7 +128,7 @@ linters:
     max_properties: 15
 
   PropertySortOrder:
-    enabled: true
+    enabled: false
     ignore_unspecified: false
     min_properties: 2
     separate_groups: false
