@@ -30,6 +30,7 @@ class JobsController < ApplicationController
       # Something was not quite right...
       # Maybe later redirect to the job overview if one exists
       redirect_to @board
+      return
     end
 
     @player.start @job
@@ -42,5 +43,7 @@ class JobsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       @job = Job.find(params[:id])
+    rescue
+      redirect_to job_boards_path
     end
 end

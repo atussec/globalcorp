@@ -28,6 +28,11 @@ class PlayersController < ApplicationController
   def edit
   end
 
+  # do nothing for now
+  # changing player name is not supported
+  def update
+  end
+
   # POST /players
   # POST /players.json
   def create
@@ -42,6 +47,12 @@ class PlayersController < ApplicationController
         format.json { render json: @player.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # called when a player submits his current work
+  def finish
+    @player.finish
+    redirect_to job_boards_path
   end
 
   private

@@ -5,9 +5,8 @@ class JobBoard < ApplicationRecord
     offset(rand(count)).first or init_new_board
   end
 
-  def self.init_new_board(level = 0)
-    board = self.new({level: level})
-    board.save
+  def self.init_new_board(skill = 0, level = 0)
+    board = self.create({skill: skill, level: level})
     board.generate_new_job
     board
   end

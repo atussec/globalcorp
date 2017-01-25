@@ -10,24 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123141029) do
+ActiveRecord::Schema.define(version: 20170125201010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "job_boards", force: :cascade do |t|
     t.integer  "level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "skill",      default: 0
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.decimal  "money",        precision: 999, scale: 2, default: "0.0"
+    t.decimal  "money"
     t.integer  "time"
     t.integer  "job_board_id"
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.integer  "skill",                                  default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "skill",        default: 0
     t.index ["job_board_id"], name: "index_jobs_on_job_board_id", using: :btree
   end
 
@@ -36,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170123141029) do
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "user_id"
-    t.decimal  "money",      precision: 999, scale: 2, default: "1.0"
+    t.decimal  "money",      precision: 999, scale: 2, default: "0.0"
     t.integer  "tutorial",                             default: 0
     t.decimal  "skill",      precision: 10,  scale: 2, default: "0.0"
     t.boolean  "admin",                                default: false, null: false
@@ -66,8 +67,9 @@ ActiveRecord::Schema.define(version: 20170123141029) do
     t.integer  "time"
     t.integer  "player_id"
     t.datetime "finished_at"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "skill",                                 default: 0
     t.index ["player_id"], name: "index_works_on_player_id", using: :btree
   end
 

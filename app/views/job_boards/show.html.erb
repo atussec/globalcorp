@@ -3,6 +3,8 @@
 <p>
   <strong>Job Board Level:</strong>
   <%= @job_board.level %>
+  <strong>Job Board Skill:</strong>
+  <%= @job_board.skill %>
 </p>
 <div class="row jobs-list-grid-container">
   <%= render @job_board.jobs %>
@@ -14,4 +16,5 @@
     }))
 </script>
 
-<%= link_to 'Random Board', job_boards_path, class: 'waves-effect waves-light btn-large' %>
+<%= link_to 'Your Current Board', job_boards_path, class: 'waves-effect waves-light btn-large' %>
+<%= link_to 'Random Board', random_job_boards_path, class: 'waves-effect waves-light btn-large' %>
