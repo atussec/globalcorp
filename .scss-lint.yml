@@ -125,7 +125,7 @@ linters:
   PropertyCount:
     enabled: true
     include_nested: false
-    max_properties: 10
+    max_properties: 15
 
   PropertySortOrder:
     enabled: true
@@ -162,7 +162,7 @@ linters:
 
   SelectorDepth:
     enabled: true
-    max_depth: 3
+    max_depth: 4
 
   SelectorFormat:
     enabled: true
@@ -243,7 +243,7 @@ linters:
     properties: []
 
   VendorPrefix:
-    enabled: true
+    enabled: false
     identifier_list: base
     additional_identifiers: []
     excluded_identifiers: []
