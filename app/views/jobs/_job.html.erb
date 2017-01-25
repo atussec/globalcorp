@@ -1,46 +1,9 @@
-<div class="col s12 jobs-card-124">
+<div class="col s12 jobs-card-<%= job.hash_num %>">
   <div>
     <span>A new Job</span>
     <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
   </div>
   <div class="start-job">
-    <%= link_to 'Start working', start_job_path %>
-  </div>
-</div>
-
-<div class="col s12  jobs-card-154">
-  <div>
-    <span>A new Job</span>
-    <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
-  </div>
-  <div class="start-job">
-    <%= link_to 'Start working', start_job_path %>
-  </div>
-</div>
-<div class="col s12  jobs-card-244">
-  <div>
-    <span>A new Job</span>
-    <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
-  </div>
-  <div class="start-job">
-    <%= link_to 'Start working', start_job_path %>
-  </div>
-</div>
-<div class="col s12  jobs-card-13">
-  <div>
-    <span>A new Job</span>
-    <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
-  </div>
-  <div class="start-job">
-    <%= link_to 'Start working', start_job_path %>
-  </div>
-</div>
-<div class="col s12  jobs-card-299">
-  <div>
-    <span>A new Job</span>
-    <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
-  </div>
-  <div class="start-job">
-    <%= link_to 'Start working', start_job_path %>
+    <%= link_to 'Start working', start_job_path(id: job.id) %>
   </div>
 </div>

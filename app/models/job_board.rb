@@ -20,4 +20,12 @@ class JobBoard < ApplicationRecord
     time = random.rand(1..level*60)
     self.jobs.create({money: money, time: time})
   end
+
+  def generate_jobs
+    # always generate one new job
+    generate_new_job
+
+    # check if you need to generate more
+    # for now not
+  end
 end
