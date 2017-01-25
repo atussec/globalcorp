@@ -28,6 +28,11 @@ class PlayersController < ApplicationController
   def edit
   end
 
+  # do nothing for now
+  # changing player name is not supported
+  def update
+  end
+
   # POST /players
   # POST /players.json
   def create
@@ -35,13 +40,19 @@ class PlayersController < ApplicationController
     @player.user_id = current_user.id
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to welcome_index_path, notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new }
         format.json { render json: @player.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # called when a player submits his current work
+  def finish
+    @player.finish
+    redirect_to job_boards_path
   end
 
   private

@@ -15,6 +15,9 @@ class WelcomeController < ApplicationController
     redirect_to welcome_index_path
   end
 
+  def letsencrypt
+    render plain: "letsencrypt can be validated here :)"
+  end
 
   private
   # Private: create an anonymous account for this user.

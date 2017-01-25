@@ -29,17 +29,21 @@ class JobsController < ApplicationController
     unless @player.can_start @job
       # Something was not quite right...
       # Maybe later redirect to the job overview if one exists
-      redirect_to @job.job_board
+      redirect_to @board
+      return
     end
 
-
+    @player.start @job
 
     # todo: fill out
+    redirect_to @board
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       @job = Job.find(params[:id])
+    rescue
+      redirect_to job_boards_path
     end
 end
