@@ -47,7 +47,7 @@ class Player < ApplicationRecord
     if self.work.present? and self.work.finished_at < Time.now
       self.money += self.work.money
       skill_bar = self.skill * 2 - self.work.skill + 1
-      skill_increase = [1, Math.log10(self.work.time)].min/skill_bar
+      skill_increase = [1, Math.log10(self.work.time)].max/skill_bar
       self.skill += [skill_increase, 1].min
       self.work.destroy
       self.save
