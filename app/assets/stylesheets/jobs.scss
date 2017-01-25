@@ -2,9 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@mixin job-card($image, $angle) {
-  background: image-url($image) no-repeat;
-  background-size: cover;
+@mixin job-card($image, $pin, $angle) {
+  background:image-url($pin) no-repeat center top, image-url($image) no-repeat center center;
+  //This is valid, because we have two background images
+  //noinspection CssInvalidPropertyValue
+  background-size:initial, cover;
   -moz-transform: rotate($angle);
   -webkit-transform: rotate($angle);
   -o-transform: rotate($angle);
@@ -66,17 +68,22 @@
     }
   }
 
-  $from-angle: -15;
-  $to-angle: 15;
+  $from-angle: -5;
+  $to-angle: 5;
   $card-num: 16;
+  $pin-num: 8;
 
   @for $img-rot from $from-angle through $to-angle {
     @for $img-num from 1 through $card-num {
-      $job-num: (($img-rot - $from-angle) * $card-num) + ($img-num - 1);
+      @for $img-pin from 1 through $pin-num {
+        $job-num-pin: $img-pin - 1;
+        $job-num-card: (($img-num - 1) * $pin-num) + $job-num-pin;
+        $job-num: (($img-rot - $from-angle) * $card-num * $pin-num) + ($job-num-card);
 
-      .jobs-card-#{$job-num} {
-        @extend .jobs-card-grid;
-        @include job-card("job_#{$img-num}.png", #{$img-rot}deg);
+        .jobs-card-#{$job-num} {
+          @extend .jobs-card-grid;
+          @include job-card("job/job_#{$img-num}.png", "pin/pin_#{$img-pin}.png", #{$img-rot * 3}deg);
+        }
       }
     }
   }
