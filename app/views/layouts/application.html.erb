@@ -56,9 +56,19 @@
                 to earn
                 <%= @player.work.money %> €
                 <% if @player.work.finished_at < Time.now %>
-                    <%= link_to 'Finish', finish_player_path(@player), class: "green-text text-lighten-3" %>
+                    <%= link_to 'Finish', finish_player_path(@player), class: "btn" %>
                 <% else %>
                 soon
+                    <a id="finish-link"></a>
+                    <script>
+                        $( document ).ready(function() {
+                            window.setTimeout(function () {
+                                $('#finish-link').attr('class', 'btn');
+                                $('#finish-link').attr('href', '<%= finish_player_path(@player) %>');
+                                $('#finish-link').text('Finish');
+                            }, <%= (@player.work.finished_at - Time.now).round * 1000 %>);
+                        });
+                    </script>
                 <% end %>
             <% end %>
 
