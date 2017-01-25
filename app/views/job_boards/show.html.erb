@@ -7,5 +7,6 @@
 <div class="row jobs-list-grid-container">
   <%= render @job_board.jobs %>
 </div>
-<%= link_to 'Edit', edit_job_board_path(@job_board) %> |
-<%= link_to 'Back', job_boards_path %>
+
+<div class="hidden-id" style="display: none;" id="job_board_id"><%= @job_board.id %></div>
+<%= link_to 'Random Board', job_boards_path, class: 'waves-effect waves-light btn-large' %>
