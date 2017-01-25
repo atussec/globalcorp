@@ -9,14 +9,18 @@ class JobBoardsController < ApplicationController
     # later filter out company boards
     @board = JobBoard.find_by_skill(skill_level)
     unless @board.present?
-      @board = JobBoard.init_new_board(skill: skill_level)
+      @board = JobBoard.init_new_board(skill_level)
     end
     redirect_to @board
   end
 
   def random
-    @board = JobBoard.get_random
-    redirect_to @board
+    @board = JobBoard.get_random @player.skill
+    if @board.present?
+      redirect_to @board
+      return
+    end
+    redirect_to job_boards_path
   end
 
   # GET /job_boards/1
@@ -28,5 +32,7 @@ class JobBoardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_job_board
       @job_board = JobBoard.find(params[:id])
+    rescue
+      redirect_to job_boards_path
     end
 end
