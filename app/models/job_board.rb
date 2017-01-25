@@ -25,7 +25,7 @@ class JobBoard < ApplicationRecord
     skill = self.skill
     min_money = [Math.log2(skill), 0].max
     money_per_minute = random.rand(min_money..skill)
-    time = random.rand(1..level*60 + skill*60)
+    time = random.rand(1..level*60 + skill*60 + 1)
     money = (money_per_minute*time)/(60)
     job = self.jobs.create({money: money, time: time, skill: skill})
     JobChannel.add(job, self.id)
