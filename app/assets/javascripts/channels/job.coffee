@@ -1,17 +1,21 @@
-$( document ).ready ->
-  boardId = $('#job_board_id').html();
-  App.job = App.cable.subscriptions.create {channel: "JobChannel", board: boardId},
-    connected: ->
-      # Called when the subscription is ready for use on the server
+App.create_board_channel = (boardId) ->
+  if App.job
+    cache = App.job
+    App.cable.subscriptions.reload cache
+  else
+    App.job = App.cable.subscriptions.create {channel: "JobChannel", board: boardId},
+      board: ->
+        boardId
 
-    disconnected: ->
-      # Called when the subscription has been terminated by the server
+      connected: ->
+        # Called when the subscription is ready for use on the server
 
-    received: (data) ->
-      # Called when there's incoming data on the websocket for this channel
+      disconnected: ->
+        # Called when the subscription has been terminated by the server
 
-    add: ->
-      @perform 'add'
+      received: (data) ->
+        if data.job && data.board == boardId
+          $('.jobs-list-grid-container').append(data.job)
+        else if data.jobId && data.board == boardId
+          $("#job-#{data.jobId}").remove()
 
-    remove: ->
-      @perform 'remove'

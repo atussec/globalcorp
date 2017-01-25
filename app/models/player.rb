@@ -29,6 +29,8 @@ class Player < ApplicationRecord
     _time = job.time
     _skill = job.skill
 
+    JobChannel.remove(job, board.id)
+
     # remove the job now to tighten the chance for race conditions
     job.destroy
 

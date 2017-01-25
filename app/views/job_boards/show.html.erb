@@ -8,5 +8,10 @@
   <%= render @job_board.jobs %>
 </div>
 
-<div class="hidden-id" style="display: none;" id="job_board_id"><%= @job_board.id %></div>
+<script>
+    ($(document).ready(function () {
+        App.create_board_channel(<%= @job_board.id %>);
+    }))
+</script>
+
 <%= link_to 'Random Board', job_boards_path, class: 'waves-effect waves-light btn-large' %>

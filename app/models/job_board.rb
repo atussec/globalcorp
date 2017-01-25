@@ -18,7 +18,8 @@ class JobBoard < ApplicationRecord
     level = self.level + 1.0
     money = random.rand(0.01..level)
     time = random.rand(1..level*60)
-    self.jobs.create({money: money, time: time})
+    job = self.jobs.create({money: money, time: time})
+    JobChannel.add(job, self.id)
   end
 
   def generate_jobs

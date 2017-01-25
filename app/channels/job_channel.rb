@@ -8,9 +8,11 @@ class JobChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def add
+  def self.add(job, channel)
+    ActionCable.server.broadcast("job_board_#{channel}", board: channel, job: ApplicationController.render(job))
   end
 
-  def remove
+  def self.remove(job, channel)
+    ActionCable.server.broadcast("job_board_#{channel}", board: channel, jobId: job.id)
   end
 end
