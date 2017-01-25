@@ -8,7 +8,7 @@ class Player < ApplicationRecord
   # He needs to have room in his workload
   #
   # Job is currently unused but will be needed later
-  def can_start(job)
+  def can_start(_job)
     if self.work.present?
       return false
     end
@@ -25,9 +25,9 @@ class Player < ApplicationRecord
     board = job.job_board
 
     # save important job variables needed for work
-    money = job.money
-    time = job.time
-    skill = job.skill
+    _money = job.money
+    _time = job.time
+    _skill = job.skill
 
     # remove the job now to tighten the chance for race conditions
     job.destroy

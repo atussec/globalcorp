@@ -51,29 +51,32 @@
       transition-duration: 0.4s;
       border: 2px solid rgba(125, 125, 125, 0.3);
       border-radius: 4px;
+
       a {
-        color: darkblue;
+        color: #00008b;
       }
     }
 
     .start-job:hover {
       background-color: #000000;
+
       a {
-        color: white;
+        color: #ffffff;
       }
     }
   }
 
-  $from_angle: -15;
-  $to_angle: 15;
-  $card_num: 16;
+  $from-angle: -15;
+  $to-angle: 15;
+  $card-num: 16;
 
-  @for $img_rot from $from_angle through $to_angle {
-    @for $img_num from 1 through $card_num {
-      $job_num: (($img_rot - $from-angle) * $card_num) + ($img_num - 1);
-      .jobs-card-#{$job_num} {
+  @for $img-rot from $from-angle through $to-angle {
+    @for $img-num from 1 through $card-num {
+      $job-num: (($img-rot - $from-angle) * $card-num) + ($img-num - 1);
+
+      .jobs-card-#{$job-num} {
         @extend .jobs-card-grid;
-        @include job-card("job_#{$img_num}.png", #{$img_rot}deg);
+        @include job-card("job_#{$img-num}.png", #{$img-rot}deg);
       }
     }
   }
