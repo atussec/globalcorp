@@ -3,7 +3,7 @@
     <span>A new Job</span>
     <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
   </div>
-  <% if @player.skill >= job.skill %>
+  <% if !@player || @player.skill >= job.skill %>
       <div class="start-job">
         <%= link_to 'Start working', start_job_path(id: job.id) %>
       </div>
