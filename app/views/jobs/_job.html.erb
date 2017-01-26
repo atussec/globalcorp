@@ -1,7 +1,7 @@
 <div class="col s12 jobs-card-<%= job.hash_num %>" id="job-<%= job.id %>">
   <div>
     <span>A new Job</span>
-    <p>I give some flavor text. I pay <%= job.money %> money and require <%= job.time %> time...</p>
+    <p>I give some flavor text. I pay <%= job.money %> € and require <%= job.time %> seconds of your time...</p>
   </div>
   <% if !@player || @player.skill >= job.skill %>
       <div class="start-job">

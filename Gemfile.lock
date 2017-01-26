@@ -43,6 +43,7 @@ GEM
     airbrake-ruby (1.6.0)
     arel (7.1.4)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x64-mingw32)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -89,6 +90,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
@@ -209,6 +212,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   materialize-sass
+  momentjs-rails
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.1)

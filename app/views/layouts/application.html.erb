@@ -7,6 +7,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <!--Add numeral.js from cdn-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.4/numeral.min.js"></script>
+
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
@@ -14,9 +17,9 @@
   </head>
 
   <body>
-    <nav>
-      <div class="container">
-        <div class="nav-wrapper">
+    <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <div class="container">
           <a href="/" class="brand-logo">GlobalCorp</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <% if user_signed_in? %>
@@ -29,6 +32,45 @@
           </ul>
         </div>
       </div>
+      <div class="nav-content">
+        <div class="container">
+          <div style="margin-top: 50px;">
+            <span style="white-space: nowrap;">
+              <% if @player %>
+                  <%= @player.name %>
+                  has
+                  <%= @player.money %> €
+                  and
+                  <%= @player.skill %> skill
+
+                  <% if @player.work %>
+                      <% if @player.work.finished_at > Time.now %>
+                          and is done working
+                          <span id="finish-time"><%= (@player.work.finished_at - Time.now).round %> seconds</span>
+                      <% else %>
+                          He worked
+                      <% end %>
+                      to earn
+                      <%= @player.work.money %> €
+                      <% if @player.work.finished_at < Time.now %>
+                          <%= link_to 'Finish', finish_player_path(@player), class: "btn" %>
+                      <% else %>
+                          <a id="finish-link"></a>
+                          <script>
+                              $(document).ready(function () {
+                                  window.start_job_countdown(
+                                      <%= (@player.work.finished_at - Time.now).round %>,
+                                      '<%= finish_player_path(@player) %>'
+                                  );
+                              });
+                          </script>
+                      <% end %>
+                  <% end %>
+              <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <div class="container main">
@@ -38,43 +80,8 @@
     </div>
 
     <footer class="page-footer">
-      <div class="container grey-text text-lighten-4">
-        <% if @player %>
-            <%= @player.name %>
-            has
-            <%= @player.money %> €
-            and
-            <%= @player.skill %> skill
-
-            <% if @player.work %>
-                <% if @player.work.finished_at > Time.now %>
-                    and is working for
-                    <%= (@player.work.finished_at - Time.now).round %> seconds
-                <% else %>
-                    He worked
-                <% end %>
-                to earn
-                <%= @player.work.money %> €
-                <% if @player.work.finished_at < Time.now %>
-                    <%= link_to 'Finish', finish_player_path(@player), class: "btn" %>
-                <% else %>
-                soon
-                    <a id="finish-link"></a>
-                    <script>
-                        $( document ).ready(function() {
-                            window.setTimeout(function () {
-                                $('#finish-link').attr('class', 'btn');
-                                $('#finish-link').attr('href', '<%= finish_player_path(@player) %>');
-                                $('#finish-link').text('Finish');
-                            }, <%= (@player.work.finished_at - Time.now).round * 1000 %>);
-                        });
-                    </script>
-                <% end %>
-            <% end %>
-
-        <% end %>
-
-        <a class="grey-text text-lighten-4 right" href="https://marv-productions.de">© 2017</a>
+      <div class="container">
+        <a class="grey-text text-lighten-4 right" href="https://marv-productions.de">© 2017 Marv Productions</a>
       </div>
     </footer>
   </body>

@@ -9,12 +9,8 @@ class Player < ApplicationRecord
   #
   # Job is currently unused but will be needed later
   def can_start(job)
-    if self.work.present?
-      return false
-    end
-    if self.skill < job.skill
-      return false
-    end
+    return false if work.present?
+    return false if skill < job.skill
     # maybe check other requirements later?
     true
   end
@@ -47,13 +43,14 @@ class Player < ApplicationRecord
 
   # finish the current work unit
   def finish
-    if self.work.present? and self.work.finished_at < Time.now
-      self.money += self.work.money
-      skill_bar = self.skill * 2 - self.work.skill + 1
-      skill_increase = [1, Math.log10(self.work.time)].max/skill_bar
-      self.skill += [skill_increase, 1].min
-      self.work.destroy
-      self.save
-    end
+    # sanity check to prevent hacking
+    return unless work.present? && work.finished_at < Time.now
+
+    self.money += work.money
+    skill_bar = skill * 2 - work.skill + 1
+    skill_increase = [1, Math.log10(work.time)].max / skill_bar
+    self.skill += [skill_increase, 1].min
+    work.destroy
+    save
   end
 end

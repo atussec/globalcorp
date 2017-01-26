@@ -5,6 +5,12 @@ AllCops:
 # disable as performance is not needed and migration to ruby3 will be fine
 Style/FrozenStringLiteralComment:
   Enabled: false
+# Enforce space after -> for readability
+# no plan on using this in ruby < 2.0
+Style/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+  Enabled: true
 # a max of 80 is too small
 Metrics/LineLength:
   Max: 120
+
