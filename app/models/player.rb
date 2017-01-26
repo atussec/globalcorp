@@ -8,8 +8,11 @@ class Player < ApplicationRecord
   # He needs to have room in his workload
   #
   # Job is currently unused but will be needed later
-  def can_start(_job)
+  def can_start(job)
     if self.work.present?
+      return false
+    end
+    if self.skill < job.skill
       return false
     end
     # maybe check other requirements later?
